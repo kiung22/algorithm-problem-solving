@@ -1,7 +1,7 @@
 M = int(input())
 N = int(input())
 
-primary = []
+prime_numbers = []
 for n in range(M, N + 1):
     if n == 1:
         continue
@@ -9,10 +9,10 @@ for n in range(M, N + 1):
         if not n % i:
             break
     else:
-        primary.append(n)
+        prime_numbers.append(n)
 
-if primary:
-    print(sum(primary))
-    print(primary[0])
+if prime_numbers:
+    print(sum(prime_numbers))
+    print(prime_numbers[0])
 else:
     print(-1)
