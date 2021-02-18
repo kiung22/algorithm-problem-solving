@@ -1,17 +1,18 @@
 K, N = map(int, input().split())
+wires = [int(input()) for _ in range(K)]
 
-wires = []
-total = 0
-for _ in range(K):
-    wire = int(input())
-    total += wire
-    wires.append(wire)
+lans =[]
+for wire in wires:
+    for i in range(1, N - K + 2):
+        lans.append(wire // i)
+lans.sort()
 
-max_value = total // N
-for l in range(max_value, 0, -1):
-    cnt = 0
+for lan in lans:
+    n = 0
     for wire in wires:
-        cnt += wire//l
-    if cnt >= N:
-        print(l)
+        n += wire // lan
+    if n < N:
         break
+    result = lan
+
+print(result)
