@@ -1,5 +1,6 @@
 M, N = map(int, input().split())
 
+# 에라토스테네스의 체
 numbers = list(range(N + 1))
 numbers[1] = 0
 for n in numbers:
