@@ -1,28 +1,24 @@
 import sys
 
 class Stack(list):
-    def __init__(self):
-        self.top = -1
-    
     def push(self, n):
-        self.top += 1
         self.append(n)
 
     def pop(self):
-        if self.top == -1:
-            print(-1)
+        if len(self):
+            print(self[-1])
+            del self[-1]
         else:
-            self.top -= 1
-            print(self.pop())
+            print(-1)
 
     def top(self):
-        if self.top == -1:
-            print(-1)
+        if len(self):
+            print(self[-1])
         else:
-            print(self[self.top])
+            print(-1)
     
     def empty(self):
-        print(int(bool(self)))
+        print(int(not(self)))
 
     def size(self):
         print(len(self))
@@ -35,6 +31,3 @@ for _ in range(N):
         eval(f'stack.{command[0]}({command[1]})')
     else:
         eval(f'stack.{command[0]}()')
-
-# stack = Stack()
-# print(stack)
