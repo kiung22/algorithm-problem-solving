@@ -7,18 +7,19 @@ def f(numbers):
         count[number] += 1
         if count[number] > 2:
             return 0
-    
-    cnt_2 = 0
-    cnt_1 = 0
-    for i in range(N-1):
-        if count[i] < count[i+1]:
-            return 0
-        if count[i] == 2:
-            cnt_2 += 1
-        elif count[i] == 1:
-            cnt_1 = 1
 
-    return 2 ** (cnt_2 + cnt_1)
+    for i in range(1, N):
+        if count[i-1] < count[i]:
+            return 0
+    
+    ans = 1
+    for i in range(N):
+        if count[i] == 2:
+            ans *= 2
+        elif count[i] == 1:
+            ans *= 2
+            break
+    return ans
 
 N = int(input())
 numbers = list(map(int, input().split()))

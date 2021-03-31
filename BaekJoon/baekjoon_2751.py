@@ -1,3 +1,5 @@
+import sys
+
 # 병합정렬
 def merge_sort(arr):
     n = len(arr)
@@ -36,8 +38,8 @@ def merge_sort(arr):
 
     return arr_merged
 
-N = int(input())
-numbers = [int(input()) for _ in range(N)]
+N = int(sys.stdin.readline())
+numbers = [int(sys.stdin.readline()) for _ in range(N)]
 sorted_numbers = merge_sort(numbers)
 for num in sorted_numbers:
     print(num)

@@ -3,7 +3,7 @@ import sys
 N, M = map(int, sys.stdin.readline().split())
 trees = list(map(int, sys.stdin.readline().split()))
 
-max_height = max(trees) - M
+max_height = max(trees)
 min_height = 0
 
 result = 0
