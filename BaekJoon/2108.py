@@ -17,6 +17,7 @@ for num in numbers:
         count[num] += 1
     else:
         count[num] = 1
+
 max_cnt = 0
 result = []
 for k, v in count.items():
@@ -24,6 +25,8 @@ for k, v in count.items():
         max_cnt = v
         result = [k]
     elif v == max_cnt:
+        result.append(k)
+
 if len(result) > 1:
     print(result[1])
 else:
