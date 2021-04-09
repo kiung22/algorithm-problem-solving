@@ -18,7 +18,7 @@ def D():
     else:
         l += 1
     
-    if l > n-1 or r < 0:
+    if l > r+1:
         return 1
     return 0
 
