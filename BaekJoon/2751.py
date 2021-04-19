@@ -14,27 +14,23 @@ def merge_sort(arr):
     # merge
     n1 = len(left)
     n2 = len(right)
-    arr_merged = [0] * (n1 + n2)
+    arr_merged = []
     i = 0
     j = 0
-    k = 0
     while i < n1 and j < n2:
         if left[i] < right[j]:
-            arr_merged[k] = left[i]
+            arr_merged.append(left[i])
             i += 1
         else:
-            arr_merged[k] = right[j]
+            arr_merged.append(right[j])
             j += 1
-        k += 1
     
     while i < n1:
-        arr_merged[k] = left[i]
+        arr_merged.append(left[i])
         i += 1
-        k += 1
     while j < n2:
-        arr_merged[k] = right[i]
+        arr_merged.append(right[j])
         j += 1
-        k += 1
 
     return arr_merged
 
