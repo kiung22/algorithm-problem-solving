@@ -6,21 +6,23 @@ input = sys.stdin.readline
 def postorder(i, j):
     if i > j:
         return
-    k = j
-    while k > i and numbers[k] > numbers[i]:
-        k -= 1
 
-    postorder(i+1, k)
-    postorder(k+1, j)
+    m = i+1
+    for k in range(i+1, j+1):
+        if numbers[k] > numbers[i]:
+            m = k
+            break
+
+    postorder(i+1, m-1)
+    postorder(m, j)
     print(numbers[i])
 
 
 numbers = []
 while True:
-    n = input().rstrip()
-    if n.isdigit():
-        numbers.append(int(n))
-    else:
+    try:
+        numbers.append(int(input()))
+    except:
         break
 
 postorder(0, len(numbers)-1)
