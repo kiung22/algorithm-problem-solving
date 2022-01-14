@@ -2,31 +2,22 @@ import sys
 
 input = sys.stdin.readline
 
-def f(i, m, c):
-    global min_cost
-
-    if m >= M:
-        min_cost = min(min_cost, c)
-        return
-    
-    if c >= min_cost:
-        return
-    
-    for j in range(i+1, N):
-        if m + byte_sum[j] < M:
-            return
-        f(j, m + byte[j], c + cost[j])
-
 
 N, M = map(int, input().split())
 byte = list(map(int, input().split()))
 cost = list(map(int, input().split()))
-byte_sum = byte[:] + [0]
-for i in range(N, 0, -1):
-    byte_sum[i-1] += byte_sum[i]
+total_cost = sum(cost)
 
-min_cost = 10000
-f(-1, 0, 0)
+dp = [[0] * (total_cost+1) for _ in range(N+1)]
+result = 10000
+for i in range(1, N+1):
+    for j in range(total_cost+1):
+        if cost[i-1] > j:
+            dp[i][j] = dp[i-1][j]
+        else:
+            dp[i][j] = max(byte[i-1] + dp[i-1][j-cost[i-1]], dp[i-1][j])
+        
+        if dp[i][j] >= M:
+            result = min(result, j)
 
-print(min_cost)
-print(byte_sum)
+print(result)
