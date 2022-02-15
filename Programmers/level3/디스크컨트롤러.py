@@ -2,29 +2,29 @@ import heapq
 
 
 def solution(jobs):
+    jobs.sort()
     N = len(jobs)
 
     heap = []
-    for i, job in enumerate(jobs):
-        heapq.heappush(heap, (job[0] + job[1], job[0], job[1], i))
-
-    i = -1
-    t = 0
-    total = 0
+    heapq.heappush(heap, (jobs[0][0] + jobs[0][1], jobs[0][0], jobs[0][0], jobs[0][1]))
+    t = jobs[0][0]
+    i = 1
+    total_response_time = 0
+    
     while heap:
-        print(heap)
-        end, start, time, j = heapq.heappop(heap)
-        dt = t - start if t > start else 0
+        end, start, request, time = heapq.heappop(heap)
 
-        if i == j:
-            total += time + dt
-            print(total)
-            t = end
+        if start < t:
+            end = time + t
+            start = t
+            heapq.heappush(heap, (end, start, request, time))
         else:
-            i = j
-            end = start + time + dt
-            heapq.heappush(heap, (end, start, time, i))
+            t = end
+            total_response_time += end - request
+            while i < N and (jobs[i][0] <= t or not heap):
+                heapq.heappush(heap, (jobs[i][0] + jobs[i][1], jobs[i][0], jobs[i][0], jobs[i][1]))
+                i += 1
 
-    return total
+    return total_response_time // N
 
-print(solution([[0, 3], [3, 6], [2, 6]]))
+print(solution([[0, 3], [1, 9], [2, 6]]))
